@@ -1,9 +1,9 @@
 source "https://rubygems.org"
-gem 'faker' # For generating fake data
-gem 'kaminari' # For pagination
-gem 'bootstrap', '~> 5.3' # For styling
-gem 'sassc-rails' # Required for Bootstrap
-gem 'jquery-rails' # Required for Bootstrap JS
+gem "faker" # For generating fake data
+gem "kaminari" # For pagination
+gem "bootstrap", "~> 5.3" # For styling
+gem "sassc-rails" # Required for Bootstrap
+gem "jquery-rails" # Required for Bootstrap JS
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 8.0.2"
