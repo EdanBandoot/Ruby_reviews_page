@@ -1,2 +1,37 @@
-<h1>Erd#show</h1>
-<p>Find me in app/views/erd/show.html.erb</p>
+<div class="container mt-4">
+  <h1>Database ERD</h1>
+
+  <div class="card mb-4">
+    <div class="card-body">
+      <h2>Datasets Used</h2>
+
+      <h5 class="mt-3">1. Faker Gem</h5>
+      <ul>
+        <li><strong>Structure:</strong> Programmatically generated product/review data</li>
+        <li><strong>Tables:</strong> Products, Reviews</li>
+        <li><strong>Fields:</strong> Product names, descriptions, prices, review comments</li>
+      </ul>
+
+      <h5 class="mt-3">2. satisfaction.csv</h5>
+      <ul>
+        <li><strong>Structure:</strong> Static CSV with satisfaction levels</li>
+        <li><strong>Tables:</strong> Satisfactions</li>
+        <li><strong>Fields:</strong> Pre-defined satisfaction levels</li>
+      </ul>
+
+      <h5 class="mt-3">3. importance.csv</h5>
+      <ul>
+        <li><strong>Structure:</strong> Static CSV with importance levels</li>
+        <li><strong>Tables:</strong> Importances</li>
+        <li><strong>Fields:</strong> Pre-defined importance levels</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-body">
+      <h2>Entity Relationship Diagram</h2>
+      <%= image_tag "product_reviews_erd.jpg", alt: "Product Reviews ERD", class: "img-fluid border rounded" %>
+    </div>
+  </div>
+</div>
