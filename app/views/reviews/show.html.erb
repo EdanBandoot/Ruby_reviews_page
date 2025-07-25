@@ -1,2 +1,35 @@
-<h1>Reviews#show</h1>
-<p>Find me in app/views/reviews/show.html.erb</p>
+<div class="container mt-4">
+  <h1>Review Details</h1>
+
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Review for <%= @product.name %></h5>
+
+      <div class="mb-3">
+        <strong>Satisfaction:</strong>
+        <span class="badge bg-<%= satisfaction_color(@review.satisfaction.level) %>">
+          <%= @review.satisfaction.level %>
+        </span>
+      </div>
+
+      <div class="mb-3">
+        <strong>Importance:</strong>
+        <span class="badge bg-<%= importance_color(@review.importance.level) %>">
+          <%= @review.importance.level %>
+        </span>
+      </div>
+
+      <div class="mb-3">
+        <strong>Comments:</strong>
+        <p><%= @review.comments %></p>
+      </div>
+
+      <div class="mb-3">
+        <strong>Reviewed on:</strong>
+        <%= @review.created_at.to_formatted_s(:long) %>
+      </div>
+
+      <%= link_to 'Back to Product', product_path(@product), class: 'btn btn-secondary' %>
+    </div>
+  </div>
+</div>

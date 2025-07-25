@@ -1,2 +1,45 @@
-<h1>Reviews#index</h1>
-<p>Find me in app/views/reviews/index.html.erb</p>
+<div class="container mt-4">
+  <h1 class="mb-4">All Reviews</h1>
+
+  <div class="table-responsive">
+    <table class="table table-striped table-hover">
+      <thead class="table-dark">
+        <tr>
+          <th>Product</th>
+          <th>Satisfaction</th>
+          <th>Importance</th>
+          <th>Comments</th>
+          <th>Date</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @reviews.each do |review| %>
+          <tr>
+            <td><%= review.product.name %></td>
+            <td>
+              <span class="badge bg-<%= satisfaction_color(review.satisfaction.level) %>">
+                <%= review.satisfaction.level %>
+              </span>
+            </td>
+            <td>
+              <span class="badge bg-<%= importance_color(review.importance.level) %>">
+                <%= review.importance.level %>
+              </span>
+            </td>
+            <td><%= truncate(review.comments, length: 50) %></td>
+            <td><%= review.created_at.to_date.to_formatted_s(:long) %></td>
+            <td>
+              <%= link_to 'View', review_path(review), class: 'btn btn-sm btn-primary' %>
+              <%= link_to 'Product', product_path(review.product), class: 'btn btn-sm btn-secondary' %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="d-flex justify-content-center mt-4">
+    <%= paginate @reviews %>
+  </div>
+</div>
