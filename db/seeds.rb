@@ -1,9 +1,43 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
+require 'csv'
+require 'faker'
+
+# Clear existing data
+Product.destroy_all
+Satisfaction.destroy_all
+Importance.destroy_all
+Review.destroy_all
+
+# Import Satisfaction levels from CSV
+CSV.foreach(Rails.root.join('db', 'data', 'satisfaction.csv'), headers: true) do |row|
+  Satisfaction.create!(level: row['Satisfaction'])
+end
+
+# Import Importance levels from CSV
+CSV.foreach(Rails.root.join('db', 'data', 'importance.csv'), headers: true) do |row|
+  Importance.create!(level: row['Importance'])
+end
+
+# Create 100 fake products
+100.times do
+  Product.create!(
+    name: Faker::Commerce.product_name,
+    description: Faker::Lorem.paragraph(sentence_count: 3),
+    price: Faker::Commerce.price(range: 1..1000.0),
+    category: Faker::Commerce.department(max: 1)
+  )
+end
+
+# Create 100 fake reviews
+100.times do
+  Review.create!(
+    product: Product.all.sample,
+    satisfaction: Satisfaction.all.sample,
+    importance: Importance.all.sample,
+    comments: Faker::Lorem.paragraph(sentence_count: 2)
+  )
+end
+
+puts "Created #{Product.count} products"
+puts "Created #{Satisfaction.count} satisfaction levels"
+puts "Created #{Importance.count} importance levels"
+puts "Created #{Review.count} reviews"
