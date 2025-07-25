@@ -1,6 +1,29 @@
 <div class="container">
   <h1>Products</h1>
 
+  <%= form_with url: products_path, method: :get, local: true, class: "mb-4" do |form| %>
+    <div class="row">
+      <div class="col-md-6">
+        <%= form.text_field :search,
+                          placeholder: "Search products...",
+                          class: "form-control",
+                          value: params[:search] %>
+      </div>
+      <div class="col-md-4">
+        <%= form.select :category,
+                       Product.distinct.pluck(:category).sort,
+                       { include_blank: "All Categories" },
+                       class: "form-control" %>
+      </div>
+      <div class="col-md-2">
+        <%= form.submit "Search", class: "btn btn-primary w-100" %>
+      </div>
+    </div>
+  <% end %>
+  </div>
+<div class="container">
+  <h1>Products</h1>
+
   <div class="row">
     <% @products.each do |product| %>
       <div class="col-md-4 mb-4">

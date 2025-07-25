@@ -1,7 +1,6 @@
 class ReviewsController < ApplicationController
-  def index
-  end
-
   def show
+    @review = Review.find(params[:id])
+    @product = @review.product
   end
 end
