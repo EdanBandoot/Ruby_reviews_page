@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "erd/show"
   root 'products#index'
   get 'about', to: 'pages#about'
 
